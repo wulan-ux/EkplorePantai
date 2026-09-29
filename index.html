@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantai Indonesia - Interactive Slider</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Pacifico&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Menghubungkan ke file CSS Eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main-container" id="mainBg">
+        <div class="overlay"></div>
+
+        <!-- NAVBAR -->
+        <nav class="navbar">
+            <div class="logo">
+                <h2>EKSPLOR VIEW PANTAI</h2>
+                <span>PESONA PESISIR INDONESIA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="changeSlide(0)" id="nav-0" class="active">Home</a></li>
+                <li><a onclick="changeSlide(1)" id="nav-1">Kayu Arum</a></li>
+                <li><a onclick="changeSlide(2)" id="nav-2">Ngrawah</a></li>
+                <li><a onclick="changeSlide(3)" id="nav-3">Klayar</a></li>
+                <li><a onclick="changeSlide(4)" id="nav-4">Menganti</a></li>
+            </ul>
+        </nav>
+
+        <!-- KONTEN -->
+        <div class="slide-content">
+            <p class="sub-title" id="subTitle"> Menjelajahi View</p>
+            <h1 class="main-title" id="mainTitle"> PANTAI CANTIK DI INDONESIA</h1>
+            <p class="description" id="desc">
+                Temukan keindahan pantai-pantai tersembunyi dan nikmati pesona pesisir alam Indonesia yang masih alami.
+            </p>
+            <button class="btn-action" id="btnAction" onclick="nextSlide()">Explore Destinations</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT UNTUK PINDAH SLIDE -->
+    <script>
+        const slides = [
+            {
+                bg: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',
+                sub: 'TEMUKAN KEINDAHAN TERSEMBUNYI',
+                title: 'PANTAI HIDDEN GEM',
+                desc: 'Temukan keindahan pantai-pantai tersembunyi dan nikmati pesona pesisir alam Indonesia yang masih alami. Mulai dari spot hidden gem sampai sunset ter-aestetic, waktunya kamu dapet main character energy di sini!',
+                btnText: 'START EXPLORING'
+            },
+            {
+                bg: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1600&q=80',
+                sub: '',
+                title: 'PANTAI KAYU ARUM',
+                desc: 'Hidden gem bintang 3 dengan vibes oase tropis di ketinggian 700 mdpl! Punya udara sejuk pedesaan dengan arsitektur perpaduan vintage kolonial dan Jawa klasik yang aesthetic. Dikelilingi taman tropis rimbun, pas banget buat staycation tenang.<br><br>📍 <b>Lokasi:</b> Kanigoro, Kec. Saptosari, Kab. Gunungkidul<br>🎟️ <b>Harga Tiket:</b> Rp10.000/orang, parkir Rp3.000',
+                btnText: 'NEXT: PANTAI NGRAWAH'
+            },
+            {
+                bg: 'bg ngrawah.jpg',
+                sub: '',
+                title: 'PANTAI NGRAWAH',
+                desc: 'Hidden beach berpasir putih yang masih sepi, bersih, dan alami banget. Diapit dua tebing karang megah, pantai ini menyajikan suasana private beach yang pas banget buat healing.<br><br>📍 <b>Lokasi:</b> Desa Kanigoro, Kapanewon Saptosari, Kab. Gunungkidul<br>🎟️ <b>Harga Tiket:</b> Rp10.000/orang',
+                btnText: 'NEXT: PANTAI KLAYAR'
+            },
+            {
+                bg: 'klayar background.jpg',
+                sub: '',
+                title: 'PANTAI KLAYAR',
+                desc: 'Destinasi pesisir eksotis dengan paduan pasir putih dan tebing karang unik! Di sini kamu bisa ngeliat langsung fenomena Seruling Samudra yang menyemburkan air hingga tinggi dan pemandangan karang raksasa yang bentuknya mirip patung Sphinx.<br><br>📍 <b>Lokasi:</b> Sendang, Kec. Donorojo, Kab. Pacitan, Jawa Timur<br>🎟️ <b>Harga Tiket:</b> Rp10.000 - Rp15.000',
+                btnText: 'NEXT: PANTAI MENGANTI'
+            },
+            {
+                bg: 'bg meganti.jpg', 
+                sub: '',
+                title: 'PANTAI MENGANTI',
+                desc: 'Dijuluki sebagai <i>New Zealand</i>-nya Jawa Tengah! Pantai ini menyajikan perpaduan bentangan tebing hijau yang megah, pasir putih bersih, dan spot sunset di atas bukit yang magis banget.<br><br>📍 <b>Lokasi:</b> Karangduwur, Ayah, Kebumen, Jawa Tengah<br>🎟️ <b>HTM:</b> Rp20.000 / orang',
+                btnText: 'RETURN TO HOME'
+            }
+        ];
+
+        let currentIndex = 0;
+
+        function changeSlide(index) {
+            currentIndex = index;
+            const data = slides[currentIndex];
+
+            // Ganti Background & Teks
+            document.getElementById('mainBg').style.backgroundImage = `url('${data.bg}')`;
+            document.getElementById('subTitle').innerText = data.sub;
+            document.getElementById('mainTitle').innerHTML = data.title;
+            document.getElementById('desc').innerHTML = data.desc;
+            document.getElementById('btnAction').innerText = data.btnText;
+
+            // Update Status Aktif di Menu Navbar
+            for(let i = 0; i < slides.length; i++) {
+                const navItem = document.getElementById(`nav-${i}`);
+                if (navItem) {
+                    navItem.classList.remove('active');
+                }
+            }
+            const activeNav = document.getElementById(`nav-${index}`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentIndex + 1) % slides.length;
+            changeSlide(nextIndex);
+        }
+
+        // Set slide awal
+        changeSlide(0);
+    </script>
+</body>
+</html>

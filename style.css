@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* MATIKAN SCROLLBAR SUPAYA FIX 1 LAYAR */
+html, body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0f172a;
+    color: #ffffff;
+}
+
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 80px;
+    transition: background-image 0.5s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.logo span {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: #cbd5e1;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-bottom: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    color: #38bdf8;
+    border-bottom: 2px solid #38bdf8;
+}
+
+/* AREA SLIDE / KONTEN UTAMA */
+.slide-content {
+    max-width: 650px;
+    margin-bottom: 80px;
+    z-index: 10;
+}
+
+.sub-title {
+    display: none;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7dd3fc;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.main-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.05;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.description {
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-weight: 300;
+}
+
+.btn-action {
+    display: inline-block;
+    padding: 14px 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+/* OVERLAY GELAP AGAR TEKS TETAP JELAS */
+.overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: linear-gradient(rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7));
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .main-container { 
+        padding: 25px; 
+    }
+    .main-title { 
+        font-size: 2.2rem; 
+    }
+    .nav-links { 
+        display: none; 
+    }
+}
